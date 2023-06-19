@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="footer.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.cdnfonts.com/css/zig" rel="stylesheet">
+  
+    <title>calculadorafisica</title>
+</head>
+<body>
+  <div style="margin: 24px;">
+    <nav class="navbar navbar-light" style="background-color: #9655cc;">
+        <div class="container">
+          <ul class="nav navbar-nav">
+                <li>
+                    <li class="active">
+                    <a href="index.html">inicio</a>
+                </li>
+                <li>
+                    <a href="menu.html">menu</a>
+                </li>
+                <li>
+                    <a href="pedido.html">pedido</a>
+                </li>
+                <li>
+                    <a href="contacto.html">contacto</a>
+                </li>
+                <li>
+                    <a href="calculadorafisica.html">caculadora Fisica</a>
+                </li>
+                <li>
+    <a href="apimovies.html">movies</a>
+                </li>
+                <li>
+                  <a href="cuestionario.html">cuestionario</a>
+                </li>
+                <li>
+                  <a href="calculadora.html">calculadora</a>
+                </li>
+            </ul>
+        </div>
+     </nav>
+    </div>
+  <div class="jumbotron">
+  <h1 class="display-4" style="color: rgb(76, 45, 187);">Fisica 1 </h1>
+  <p class="lead" style="color: black;">Desarrollara competencias genericas y disciplinares al abordar aspectos relacionados con los 
+    conceptos fundamentales: Movimiento,Fuerza,Maza e interacciones materia-energia,para reconocer, entender y explicar
+    fenomenos fisicos que se presena en su entorno,pronto soluciones y generar proyectos que son algunos conceptos de la
+    materia. 
+  </p>
+  
+  <form id="formulario" style="color: rgb(255, 0, 0);">
+  <label for="distancia">Distancia:</label>
+  <input type="text" id="distancia"
+  name="distancia">
+<select id="distanciaUnidad">
+
+
+<option value="metros">Metros</option>
+<option value="pies">pies</option>
+</select>
+<br>
+<label for="tiempo">Tiempo:</label>
+<input type="text" id="tiempo"
+name="tiempo">
+<select id="tiempoUnidad">
+<option value="segundos">segundos</option>
+<option value="horas">Horas</option>
+</select>
+<br>
+<label for="velocidadUnidad">Unidades de velocidad
+</label>
+<select id="velocidadUnidad">
+  <option value="metros_por_segundo">m/s</option>
+  <option value="pies_por_segundo">ft/s</option>
+  <option value="kilometros_por_hora">km/h</option>
+  <option value="millas_por_hora">mph/h</option>
+  </option>
+</select>
+<br>
+<button type="button" value="Calcular" onclick="Calcular()" class="btn
+btn-success">Calcular</form></button>
+</form>
+<p id="resultado"></p>
+<p style="color:rgb(201, 63, 255)">Velocidad: <span id="velocidad"></span></p>
+<p style="color: rgb(0, 174, 255);">Aceleracion: <span id="aceleracion"></span></p>
+<p style="color: rgb(132, 74, 207);">Rapidez: <span id="rapidez"></span></p>
+</div>
+<script>
+  function Calcular()
+  ///obtener los valores del formulario
+  {
+    const distancia = parseFloat(document.getElementById('distancia').value);
+    const tiempo = parseFloat(document.getElementById('tiempo').value);
+    console.log("distancia " + distancia );
+    console.log("tiempo " + tiempo );
+    const  distanciaUnidad =document.getElementById('distanciaUnidad').value;
+    const   tiempoUnidad = document.getElementById('tiempoUnidad').value;
+    const velocidadUnidad= document.getElementById('velocidadUnidad').value;
+
+///converitr unidades a sistema metrico(SI)
+    
+let distanciaSI = 0;
+let tiempoSI = 0;
+if (distanciaUnidad === 'metros'){
+distanciaSI = distancia;
+}
+else if (distanciaUnidad === 'pies'){
+  distanciaSI = distancia / 3.281;
+}
+if(tiempoUnidad === 'segundos'){
+  tiempoSI=tiempo;
+}
+else if (tiempoUnidad === 'horas'){
+  tiempoSI = tiempo * 3600;
+}
+console.log("distanciaSI " + distanciaSI );
+console.log("tiempoSI " + tiempoSI );
+//Calcular la velocidad,cakeracion y (Rapidez)
+
+let velocidad = 0;
+let aceleracion = 0;
+let rapidez= 0;
+
+if (velocidadUnidad==='metros_por_segundo'){
+  velocidad = distanciaSI / tiempoSI;
+  rapidez = velocidad; // esta no es la formula
+aceleracion = velocidad / tiempoSI;
+
+}
+else if (velocidadUnidad ==='pies_por_segundo'){
+  velocidad = (distanciaSI * 3.281) /( tiempoSI);
+  rapidez = velocidad; // esta no es la formula
+aceleracion = velocidad / tiempoSI;
+
+}
+else if (velocidadUnidad ==='kilometros_por_hora'){
+  velocidad = (distanciaSI / 1000 )/( tiempoSI / 3600);
+  rapidez = velocidad; // esta no es la formula
+aceleracion = velocidad / tiempoSI;
+}
+else if (velocidadUnidad ==='millas_por_hora'){
+  velocidad = (distanciaSI / 1609) / (tiempoSI / 3600);
+  rapidez = velocidad; // esta no es la formula
+aceleracion = velocidad / tiempoSI;
+}
+console.log("velocidad " + velocidad );
+console.log("rapidez " + rapidez );
+console.log("aceleracion " + aceleracion );
+
+
+//mostrar los resultados
+let resultado = '';
+
+document.getElementById('velocidad').textContent=velocidad.toFixed(5) + ' ' + velocidadUnidad;
+document.getElementById('aceleracion').textContent=aceleracion.toFixed(5);
+document.getElementById('rapidez').textContent=rapidez.toFixed(5) + ' ' + velocidadUnidad;
+document.getElementById('resultado').innerHTML=resultado;  
+
+  }
+        
+
+    </script>
+</script>
+
+<center>
+<footer>
+  <div class="copyrigth">
+      <p>&copy;<span id="year">Derechos reservados.</span></p>
+      <i class="fa fa-facebook" aria-hidden="true"></i>
+      <h2><a href="perfil.html">contáctame</a></h2>
+      <p>Puedes contactarme a travez de cualquiera de las siguientes redes sociales.</p>
+          <p>Podras contactarme en cualquiera de estas redes:</p>
+          <p>unpocomasdeinformacion porque no se me ocurre nada...</p>
+      <div class="contact-links">
+    <a href="./miperfil"target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="http://www.instagram.com/miperfil" 
+    target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="http://www.twitter.com/miperfil" 
+    target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="http://www.discord.com/miperfil" 
+    target="_blank"><i class="fab fa-discord"></i></a>
+    <a href="http://www.pinterest.com/miperfil" 
+    target="_blank"><i class="fab fa-pinterest"></i></a>
+    <a href="http://www.linkedin.com/miperfil" 
+    target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <script>
+
+const redessociales= document.querySelectorAll('.contact-links');
+redessociales.forEach(link =>{
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        window.open(link.href, '_blank');
+    });
+});
+
+             
+      
+ </script>
+</footer>
+</center>
+<style>
+body{
+background-color:rgb(35, 70, 145);
+color:white;
+font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                                        
+}
+div{
+position: relative;
+}
+video{
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+.titulo{
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;;
+background: black;
+font-size: 150px;
+text-align: center;
+font-weight: 200;
+mix-blend-mode: multiply;
+}
+  </style>
+<script>
+const redessociales= document.querySelectorAll('.contact-links');
+redessociales.forEach(link =>{
+link.addEventListener('click', e=>{
+e.preventDefault();
+window.open(link.href, '_blank');
+});
+});
+</script>
+</body>
+</html>
